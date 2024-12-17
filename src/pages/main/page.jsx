@@ -1,0 +1,59 @@
+import React from 'react'
+import supabase from '../../api/supabase/supabaseApi.js'
+import { useEffect, useState } from 'react'
+import UserComponent from '../../component/ui/user/page.jsx'
+import useSession from '../../api/auth/session.js'
+export default function Main() {
+  const [MapList, setMapList] = useState([])
+  const {userUUID} = useSession()  // 이렇게 써도 됨
+
+  // RLS 잠금 참고 할 것
+
+//   useEffect(()=>{
+//   const supabase_data =async() =>{
+//   const { data, error } = await supabase.from('post').select('*')
+//   setList(data)
+//   if(error){
+//   }
+// }
+// supabase_data()
+// },[])
+
+
+useEffect(() => {
+  // 초기 데이터 로드
+  const loadUsers = async () => {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('username, id')
+      .eq('isLogin', true)
+    
+    if (error) {
+      console.log('불러오기 오류')
+      return
+    }
+    setMapList(data)
+  }
+
+  loadUsers()
+
+},[])
+
+  useEffect(()=>{
+    console.log(userUUID)
+  })
+
+
+return (
+  <div className='fixed top-0 left-0'>
+    {MapList.map((item) => (
+      <UserComponent 
+        key={item.id}
+        userName={item.username}
+        userID={item.id}
+        userUUID={userUUID}
+      />
+    ))}
+  </div>
+)
+}
