@@ -1,11 +1,12 @@
 import React from 'react'
 import supabase from '../../api/supabase/supabaseApi.js'
 import { useEffect, useState } from 'react'
-import UserComponent from '../../component/ui/user/page.jsx'
+import UserComponent from '../../component/ui/user/mainKey/page.jsx'
+import MainMap from '../../component/ui/user/mainMap/page.jsx'
 import useSession from '../../api/auth/session.js'
 export default function Main() {
   const [MapList, setMapList] = useState([])
-  const {userUUID} = useSession()  // 이렇게 써도 됨
+  const {userUUID} = useSession()  // 
 
   // RLS 잠금 참고 할 것
 
@@ -23,13 +24,18 @@ export default function Main() {
 useEffect(() => {
   // 초기 데이터 로드
   const loadUsers = async () => {
+    if (!userUUID) {
+      setMapList([])
+      return; 
+    }
     const { data, error } = await supabase
       .from('profiles')
       .select('username, id')
-      .eq('isLogin', true)
+      .eq('id', userUUID,)
+      .or(`id.eq.${userUUID},isLogin.eq.true`)
     
     if (error) {
-      console.log('불러오기 오류')
+      console.log('불러오기 오류',error)
       return
     }
     setMapList(data)
@@ -37,23 +43,19 @@ useEffect(() => {
 
   loadUsers()
 
-},[])
+},[userUUID])
 
   useEffect(()=>{
-    console.log(userUUID)
+    console.log(userUUID,MapList ,"main")
   })
 
 
 return (
-  <div className='fixed top-0 left-0'>
-    {MapList.map((item) => (
-      <UserComponent 
-        key={item.id}
-        userName={item.username}
-        userID={item.id}
-        userUUID={userUUID}
-      />
-    ))}
+  <div className='w-screen relative h-screen overflow-y-hidden overflow-x-hidden overflow-hidden'>
+    
+    <MainMap MapList={MapList} userUUID={userUUID} />
+    
+ 
   </div>
 )
 }

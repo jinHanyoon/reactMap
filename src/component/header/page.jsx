@@ -18,7 +18,7 @@ export default function Header() {
     console.log(session)
 }, [session])
   return (
-    <>
+    <div className='w-full'>
     <div className=' flex border-b-2 border-r-emerald-200 justify-around'>
     <div className=' flex gap-6'>
     <Link to="/main"> main</Link>
@@ -36,6 +36,6 @@ export default function Header() {
      <Route path="/main" element={<Main/>} />
       <Route path="/login" element={<Login/>} />
    </Routes> 
-   </>
+   </div>
   )
 }

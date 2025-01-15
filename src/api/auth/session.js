@@ -54,7 +54,7 @@ const useSession = create((set) => ({
         
         await supabase.auth.signOut()
         set({
-            userUUID: null,
+            userUUID: '',
             userName: '',
             avatar_url: '',
             session: null,
