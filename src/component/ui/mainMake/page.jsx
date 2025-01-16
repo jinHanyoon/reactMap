@@ -51,7 +51,7 @@ export default function MainMake() {
   return (
     <div className='w-full h-screen bg-black relative overflow-hidden overflow-x-hidden'>
     <div className='w-full h-screen fixed'>
-        <Canvas camera={{ position: [0, 0, 10] }} className="z-0">
+        <Canvas camera={{ position: [0, 0, 30] }} className="z-0">
             <Scene objectList={objectList} setItemNumber={setItemNumber} setModal={setModal} />
         </Canvas>
         <div className='absolute bottom-16 right-5'>
