@@ -1,13 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import { Stars } from "@react-three/drei";
-
 function Scene({ objectList, setItemNumber, setModal }) {
   const meshRefs = useRef([]);
   const starsRef = useRef(); // Stars를 위한 ref 추가
-  const [textColors, setTextColors] = useState([]);
 
+  const [textColors, setTextColors] = useState([]);
   const generateColorFromPosition = (x, y) => {
     // 더 낮은 채도와 명도로 조정
     const hue = (x * 5 + y * 3) % 360;
@@ -29,6 +28,13 @@ function Scene({ objectList, setItemNumber, setModal }) {
     };
   };
 
+
+  useFrame(({ clock }) => {
+    if (starsRef.current) {
+        starsRef.current.rotation.x = clock.getElapsedTime() * 0.005;
+        starsRef.current.rotation.y = clock.getElapsedTime() * 0.005;
+    }
+});
   useFrame(({ camera }) => {
     meshRefs.current.forEach((mesh, index) => {
       if (mesh) {
@@ -47,6 +53,7 @@ function Scene({ objectList, setItemNumber, setModal }) {
           return newColors;
         });
       }
+      
     });
   });
   return (
@@ -59,7 +66,8 @@ function Scene({ objectList, setItemNumber, setModal }) {
           factor={4}
           saturation={0}
           fade={true}
-          speed={1}
+          speed={2}
+          rotate={true} 
         />
       </group>
       <fog attach="fog" args={["black", 5, 30]} />
@@ -81,8 +89,9 @@ function Scene({ objectList, setItemNumber, setModal }) {
           window.innerHeight / 1080
         );
         // 정중앙에 맞추기 위해 수정
-        const xPos = (item.objectstyle.x / window.innerWidth) * 20 - 10; // 중앙으로 이동
-        const yPos = -((item.objectstyle.y / window.innerHeight) * 20 - 10); // Y축 반전
+        const xPos = -10 + (item.objectstyle.x / window.innerWidth * 20);
+        const yPos = -(-10 + (item.objectstyle.y / window.innerHeight * 20));
+      
         const geometryType = index % 3;
         return (
           <mesh

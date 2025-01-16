@@ -2,8 +2,9 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { emailLogin } from './loginAction'
 import useSession from '../session.js'
-
+import { useNavigate } from 'react-router-dom' 
 export default function Login() {
+    const navigate = useNavigate();  
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const logout = useSession.getState().logout;
@@ -13,9 +14,10 @@ export default function Login() {
         try{
             await emailLogin(email,password);
             alert("로그인에 성공하셨습니다.")
-            
+            navigate('/');
         }catch(error){
-            console.log(error)
+            alert("로그인에 실패하였습니다..")
+
         }
 
     }

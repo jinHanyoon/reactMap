@@ -14,8 +14,12 @@ export default function MainMake() {
     const [isLoading, setIsLoading] = useState(true)
     const [ItemNumber, setItemNumber]= useState()
     const [isModal, setModal]= useState(false)
+  //   const [cameraPosition, setCameraPosition] = useState([0, 0, 30]);
 
-
+  //   const handleCameraChange = () => {
+  //     setCameraPosition([10, 10, 30]); // 원하는 새로운 위치
+  //     console.log('click')
+  // };
     useEffect(()=>{
         const loadList = async() =>{
             const {data, error} = await supabase.from('mainMake').select('objectstyle,id,makeName')
@@ -46,8 +50,8 @@ export default function MainMake() {
  
   return (
     <div className='w-full h-screen bg-black relative overflow-hidden overflow-x-hidden'>
-    <div className='w-full h-screen'>
-        <Canvas camera={{ position: [0, 0, 30] }} className="z-0">
+    <div className='w-full h-screen fixed'>
+        <Canvas camera={{ position: [0, 0, 10] }} className="z-0">
             <Scene objectList={objectList} setItemNumber={setItemNumber} setModal={setModal} />
         </Canvas>
         <div className='absolute bottom-16 right-5'>

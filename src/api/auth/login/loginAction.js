@@ -1,19 +1,19 @@
-import React from "react";
 import supabase from "../../supabase/supabaseApi";
+import useSession from '../session'; // useSession import
 
 export const emailLogin = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({ 
+  const { error } = await supabase.auth.signInWithPassword({ 
       email, 
       password 
-    });
-  
-    if (!error) {
-      const { data: { user } } = await supabase.auth.getUser();
-      window.location.reload();
+  });
 
-    }
-    return data;
-  };
+  if (error) {
+      throw error;  // 에러가 있으면 throw
+  }
+
+  // 로그인 성공 시 세션 체크 호출
+  await useSession.getState().checkSession();
+};
 
 //   export const logout = async () => {
 //     const { error } = await supabase.auth.signOut();

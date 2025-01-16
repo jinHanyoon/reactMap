@@ -1,27 +1,21 @@
 import React, { useEffect } from 'react'
-import {Routes, Route } from 'react-router-dom' 
 import { Link } from 'react-router-dom';
-import Main from '../../pages/main/page.jsx'
-import Login from '../../api/auth/login/page.jsx'
 import useSession from '../../api/auth/session.js'
 
 export default function Header() {
     const {userName,session,isLogin} = useSession()
     const logout = useSession.getState().logout;  
  
-  useEffect(()=>{
-    console.log(userName)
-
-  },[userName])
-  
-  useEffect(() => {
-    console.log(session)
-}, [session])
+    useEffect(() => {
+      // 세션 체크가 완료된 후 상태가 업데이트되도록 확인
+      console.log('User Name:', userName);
+      console.log('Is Logged In:', isLogin);
+  }, [userName, isLogin,session]);
   return (
-    <div className='w-full'>
-    <div className=' flex border-b-2 border-r-emerald-200 justify-around'>
+    <div className='w-full bg-transparent fixed z-50 text-white'>
+    <div className=' flex justify-around'>
     <div className=' flex gap-6'>
-    <Link to="/main"> main</Link>
+    <Link to="/"> main</Link>
     </div>
 <div className='flex gap-6'>
     <p>{userName}</p>
@@ -32,10 +26,7 @@ export default function Header() {
   }
     </div>
     </div>
-    <Routes>
-     <Route path="/main" element={<Main/>} />
-      <Route path="/login" element={<Login/>} />
-   </Routes> 
+  
    </div>
   )
 }

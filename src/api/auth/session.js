@@ -34,7 +34,7 @@ const useSession = create((set) => ({
                 userName: profile.username,
                 avatar_url: profile.avatar_url,
                 session: session ,
-                isLogin:profile.isLogin
+                isLogin:true
             })
         }
     },
@@ -53,6 +53,7 @@ const useSession = create((set) => ({
         }
         
         await supabase.auth.signOut()
+        alert("로그아웃되었습니다");
         set({
             userUUID: '',
             userName: '',
@@ -60,6 +61,7 @@ const useSession = create((set) => ({
             session: null,
             isLogin: false,
         })
+    
     }
 }))
 
