@@ -2,12 +2,9 @@ import React, { useEffect, useState,useRef } from 'react'
 import supabase from '../../../api/supabase/supabaseApi'
 import InsertButton from '../button/insertbtn'
 import Modal from '../modal/page'
-import ToolTip from '../tooltip/page'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Html } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
-import  Scene  from './Scene.jsx'
 
+import  Scene  from './Scene.jsx'
 
 export default function MainMake() {
   
@@ -28,7 +25,11 @@ export default function MainMake() {
             }))
             setobjectList(parsedData)
             setIsLoading(false)     
-        }
+            if(error){
+              <p>불러오기오류</p>
+            }
+        
+          }
         loadList()
         console.log(objectList)
     },[])
