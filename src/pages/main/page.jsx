@@ -1,7 +1,6 @@
 import React from 'react'
 import supabase from '../../api/supabase/supabaseApi.js'
 import { useEffect, useState } from 'react'
-import UserComponent from '../../component/ui/user/mainKey/page.jsx'
 import MainMap from '../../component/ui/user/mainMap/page.jsx'
 import useSession from '../../api/auth/session.js'
 export default function Main() {

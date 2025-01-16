@@ -38,16 +38,9 @@ export default function MainMake() {
 
     useEffect(() => {
       if (ItemNumber) {
-          console.log("선택된 아이템 ID:", ItemNumber); // itemId가 변경될 때마다 실행
-          console.log(isModal)
         }
-  }, [ItemNumber,isModal]); // itemId가 변경될 때마다 실행
+  }, [ItemNumber,isModal]); 
 
-    // 우주선이 오브젝트에 도착했을경우 
-    // 우주선 좌표값 + 오브젝트 좌표값 필요
-    // 오브젝트 좌표값 확보/우주선 좌표값 퐉보/
-    // 하나로 뭉쳐야 함 
-    // 우주선이 오브젝트에 도착하게 되면 해당 오브젝트에 관련 글 
 
 
  

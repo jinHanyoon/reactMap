@@ -32,7 +32,10 @@ export default function Header() {
   }
     </div>
     </div>
-
+    <Routes>
+     <Route path="/main" element={<Main/>} />
+      <Route path="/login" element={<Login/>} />
+   </Routes> 
    </div>
   )
 }
