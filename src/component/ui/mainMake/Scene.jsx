@@ -17,7 +17,9 @@ function Scene({ objectList, setItemNumber }) {
     lookAt: null,    // 카메라가 바라볼 위치
     isMoving: false  // 카메라 이동 중 여부
   });
-
+  useEffect(() => {
+    console.log('OrbitControls가 마운트됨:', controlsRef.current);
+  }, [controlsRef]); 
   // 텍스처 로딩
   const textures = useLoader(THREE.TextureLoader, [
     '/img/tx01.webp',
@@ -91,8 +93,12 @@ function Scene({ objectList, setItemNumber }) {
     });
 
     // 카메라 이동 처리
+    // 카메라 isMoving 과 controlsRef 값이 존재 할 경우
+    // 위에 클릭 할 시 isMoving true 로 변경 controlRef = 현재 카메라 위치
     if (cameraState.isMoving && controlsRef.current) {
-      const { targetPos, lookAt } = cameraState;
+    //  최종 목적 값 click event 처리시 cameraState 좌표값 받음 
+        const { targetPos, lookAt } = cameraState;
+    //   현재 위치값
       const currentPos = controlsRef.current.object.position;
       
       // 부드러운 카메라 이동
