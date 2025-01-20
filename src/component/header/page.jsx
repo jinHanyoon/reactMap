@@ -8,25 +8,33 @@ export default function Header() {
  
     useEffect(() => {
       // 세션 체크가 완료된 후 상태가 업데이트되도록 확인
-      console.log('User Name:', userName);
-      console.log('Is Logged In:', isLogin);
+
   }, [userName, isLogin,session]);
   return (
-    <div className='w-full bg-transparent fixed z-50 text-white'>
-    <div className=' flex justify-around'>
-    <div className=' flex gap-6'>
-    <Link to="/"> main</Link>
+    <div className='w-full fixed z-50'>
+        <div className='px-6 py-4'>
+            <div className='max-w-7xl mx-auto flex justify-between items-center'>
+                <div className='flex items-center gap-6'>
+                    <Link to="/" className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 hover:opacity-80 transition-opacity">
+                        Dev JinHan
+                    </Link>
+                </div>
+                <div className='flex items-center gap-6'>
+                    {userName && (
+                        <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 hover:opacity-80 transition-opacity">{userName}</p>
+                    )}
+                    {!isLogin ? (
+                        <Link to="/login" className="px-6 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium hover:opacity-90 transition-opacity">
+                            로그인
+                        </Link>
+                    ) : (
+                        <button onClick={logout} className="px-6 py-2 rounded-lg text-slate-300 hover:text-white transition-colors">
+                            로그아웃
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
     </div>
-<div className='flex gap-6'>
-    <p>{userName}</p>
-    {!isLogin ?(
-    <Link to="/login"> login</Link>
-  ):
-    <div onClick={logout}>로그아웃</div>
-  }
-    </div>
-    </div>
-  
-   </div>
   )
 }

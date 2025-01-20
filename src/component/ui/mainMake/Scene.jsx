@@ -4,7 +4,7 @@ import { Html, OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from 'three';
 import { useLoader } from '@react-three/fiber';
 
-function Scene({ objectList, setItemNumber }) {
+function Scene({ objectList, setItemNumber,setModal }) {
   // 3D 객체들의 참조를 저장하기 위한 refs
   const meshRefs = useRef([]); // 각 메시 객체에 대한 참조 배열
   const starsRef = useRef(); // 배경 별들의 참조
@@ -17,8 +17,8 @@ function Scene({ objectList, setItemNumber }) {
     lookAt: null,    // 카메라가 바라볼 위치
     isMoving: false  // 카메라 이동 중 여부
   });
+
   useEffect(() => {
-    console.log('OrbitControls가 마운트됨:', controlsRef.current);
   }, [controlsRef]); 
   // 텍스처 로딩
   const textures = useLoader(THREE.TextureLoader, [
@@ -50,6 +50,7 @@ function Scene({ objectList, setItemNumber }) {
   // 메시 클릭 이벤트 핸들러
   const handleMeshClick = useCallback((item, position) => {
     setItemNumber(item.id);
+    setModal(true)
     
     if (controlsRef.current) {
       const targetPosition = position.clone();

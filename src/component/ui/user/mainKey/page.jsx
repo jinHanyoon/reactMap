@@ -1,6 +1,6 @@
 import React, {  useEffect, useRef } from 'react'
 import {usePositionStore} from '../../../../zustand/positoinStore.js'
-export default function UserComponent({userUUID, userID, }) {
+export default function UserComponent({ userUUID, userID, }) {
   
   // zustand 위차값 전역변수 사용
   const updatePosition = usePositionStore(state => state.updatePosition)
@@ -70,7 +70,6 @@ export default function UserComponent({userUUID, userID, }) {
     }
     }, [userID, userUUID, updatePosition]);
         useEffect(()=>{
-    console.log(userID,userUUID, "com")
 })
 
 
@@ -84,9 +83,7 @@ export default function UserComponent({userUUID, userID, }) {
     <img src='img/space.png' alt='space'></img>
     </div>
 
-<div>
 
-        </div>
         </>
   );
 

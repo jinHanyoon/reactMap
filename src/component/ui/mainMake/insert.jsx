@@ -7,6 +7,8 @@ import { usePositionStore } from '../../../zustand/positoinStore'
 export default function Insert({insertClose}) {
     const [mapName, setMapName] = useState()
     const [mapBody, setMapBody] =useState()
+    const [mapLink, setMapLink] = useState()
+
     const {userUUID} = useSession()  // 
     
    // zustand 위차값 전역변수 사용
@@ -16,7 +18,6 @@ export default function Insert({insertClose}) {
     y:position.y
 }
    useEffect(()=>{
-    console.log(position.x, position.y, "insert position")
 },[position])
 
     const addMap = async (e) => {
@@ -26,7 +27,9 @@ export default function Insert({insertClose}) {
         userUUId:userUUID,
         makeName:mapName,
         makeBody:mapBody,
+        mapLink:mapLink,
         objectstyle:objectPosition,
+        
 
       })
       if(error){
@@ -64,6 +67,15 @@ return (
               onChange={(e)=>{setMapBody(e.target.value)}}
               className="w-full px-6 py-3 bg-slate-700/50 rounded-lg border border-slate-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none text-white placeholder-slate-400 text-lg min-h-[120px] resize-y"
               placeholder="맵에 대한 설명을 입력하세요"
+            />
+          </div>
+
+          <div>
+            <label className="block text-slate-300 mb-2 text-sm">맵 링크</label>
+            <input 
+              onChange={(e)=>{setMapLink(e.target.value)}}
+              className="w-full px-6 py-3 bg-slate-700/50 rounded-lg border border-slate-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none text-white placeholder-slate-400 text-lg"
+              placeholder="맵의 링크를 입력하세요"
             />
           </div>
         </div>

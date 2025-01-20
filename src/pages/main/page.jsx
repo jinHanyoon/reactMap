@@ -44,9 +44,7 @@ useEffect(() => {
 
 },[userUUID])
 
-  useEffect(()=>{
-    console.log(userUUID,MapList ,"main")
-  })
+
 
 
 return (

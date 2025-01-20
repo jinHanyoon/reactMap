@@ -21,25 +21,31 @@ export default function Modal({itemId,setModal}) {
 
 
     useEffect(()=>{
-        console.log(itemId,'modalpage')
-        console.log(DetailData)
         
     },[itemId])
   return (
-<div className='fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50'
+<div className='fixed h-full inset-0 flex items-center justify-center backdrop-blur-sm z-50'
 onClick={() => setModal(false)} 
 >
    
-    <div className='relative bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-white rounded-lg shadow-2xl p-6 md:p-10 max-w-3xl w-full h-[600px] flex flex-col justify-between overflow-hidden mx-4'
+    <div className='relative  text-white rounded-lg shadow-2xl p-6 md:p-10 max-w-3xl w-full h-full flex flex-col justify-between overflow-hidden mx-4'
         onClick={(e) => e.stopPropagation()}
  >
         {DetailData ? ( 
-            <>
-                <h2 className='text-4xl md:text-5xl font-bold mb-4 text-center font-space-mono'>{DetailData.makeName}</h2>
-                <p className='text-base md:text-lg mb-6 text-center flex-grow font-space-mono'>{DetailData.makeBody}</p>
-            </>
+            <div className=' h-full text-center pt-24 md:pt-12 '>
+       <h2 className='text-4xl md:text-5xl font-bold mb-16 md:mb-32 font-space-mono'>{DetailData.makeName}</h2>
+       <p className='text-base md:text-lg leading-loose md:leading-loose font-space-mono whitespace-pre-wrap mb-20'>{DetailData.makeBody}</p>
+    <a 
+        href={DetailData.mapLink} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className=' md:text-lg mb-6  flex-grow font-space-mono text-blue-400 hover:text-blue-300 underline'
+    >
+        {DetailData.mapLink}
+    </a>
+            </div>
         ) : (
-            <p className='text-base md:text-lg text-center flex-grow font-space-mono'>데이터를 불러오는 중...</p> 
+            <p className='text-base md:text-lg  flex-grow font-space-mono'>데이터를 불러오는 중...</p> 
         )}
         <button 
             onClick={() => setModal(false)} 

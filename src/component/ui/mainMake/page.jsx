@@ -11,7 +11,6 @@ export default function MainMake() {
 
     // 실시간 리스트 갱신 예정
     const [objectList, setobjectList] = useState([]) 
-    const [isLoading, setIsLoading] = useState(true)
     const [ItemNumber, setItemNumber]= useState()
     const [isModal, setModal]= useState(false)
   //   const [cameraPosition, setCameraPosition] = useState([0, 0, 30]);
@@ -28,14 +27,12 @@ export default function MainMake() {
                 objectstyle: JSON.parse(item.objectstyle)
             }))
             setobjectList(parsedData)
-            setIsLoading(false)     
             if(error){
               <p>불러오기오류</p>
             }
         
           }
         loadList()
-        console.log(objectList)
     },[])
 
 
@@ -54,13 +51,13 @@ export default function MainMake() {
         <Canvas camera={{ position: [0, 0, 30] }} className="z-0">
             <Scene objectList={objectList} setItemNumber={setItemNumber} setModal={setModal} />
         </Canvas>
-        <div className='absolute bottom-16 right-5'>
-            <InsertButton />
-        </div>
+
     </div>
-    {isModal && (
-        <Modal itemId={ItemNumber} setModal={setModal} />
-    )}
+    <div className={`fixed z-50 top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
+        isModal ? 'translate-x-0' : 'translate-x-full'
+      }`}>  
+        {isModal && <Modal itemId={ItemNumber} setModal={setModal} />}
+      </div>
 </div>
 )
 }
