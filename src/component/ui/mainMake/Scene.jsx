@@ -22,9 +22,10 @@ function Scene({ objectList, setItemNumber,setModal }) {
   }, [controlsRef]); 
   // 텍스처 로딩
   const textures = useLoader(THREE.TextureLoader, [
-    '/img/tx01.webp',
     '/img/tx02.webp',
-    '/img/tx03.webp'
+    '/img/tx01.webp',
+    '/img/tx03.webp',
+
   ]);
 
   // 텍스처 설정 초기화
