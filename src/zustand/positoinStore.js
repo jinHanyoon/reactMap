@@ -6,3 +6,8 @@ export const usePositionStore = create((set, get) => ({
         position: { ...state.position, ...newPos }
     })),
 }))
+
+export const useModalStore = create((set) =>({
+    historyNumber:0, 
+    setHistoryNumber:(number)=> set({historyNumber:number})
+}))

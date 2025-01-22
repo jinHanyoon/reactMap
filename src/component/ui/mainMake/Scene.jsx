@@ -22,8 +22,8 @@ function Scene({ objectList, setItemNumber,setModal }) {
   }, [controlsRef]); 
   // 텍스처 로딩
   const textures = useLoader(THREE.TextureLoader, [
-    '/img/tx02.webp',
     '/img/tx01.webp',
+    '/img/tx02.webp',
     '/img/tx03.webp',
 
   ]);
@@ -141,17 +141,22 @@ function Scene({ objectList, setItemNumber,setModal }) {
         const xPos = -10 + (item.objectstyle.x / window.innerWidth * 20);
         const yPos = -(-10 + (item.objectstyle.y / window.innerHeight * 20));
         const colors = generateColorFromPosition(item.objectstyle.x, item.objectstyle.y);
-        const geometryType = index % 5;
+        const geometryType = item.id === 94 ? 1 : 0;
 
         return (
           <mesh
             key={item.id}
             ref={el => meshRefs.current[index] = el}
-            position={[xPos * screenScale, yPos * screenScale, 0]}
+            position={[xPos * screenScale, yPos * screenScale, 
+              item.id === 94 ? 10 : 0
+
+            ]}
             scale={screenScale}
             onClick={() => handleMeshClick(
               item,
-              new THREE.Vector3(xPos * screenScale, yPos * screenScale, 0)
+              new THREE.Vector3(xPos * screenScale, yPos * screenScale, 
+                item.id === 94 ? 10 : 0
+              )
             )}
           >
             {/* 지오메트리 타입에 따른 렌더링 */}

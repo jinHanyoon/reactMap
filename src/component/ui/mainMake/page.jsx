@@ -1,6 +1,5 @@
 import React, { useEffect, useState,useRef } from 'react'
 import supabase from '../../../api/supabase/supabaseApi'
-import InsertButton from '../button/insertbtn'
 import Modal from '../modal/page'
 import { Canvas } from '@react-three/fiber'
 
@@ -53,10 +52,10 @@ export default function MainMake() {
         </Canvas>
 
     </div>
-    <div className={`fixed z-50 top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
+    <div className={`fixed z-50 top-0 right-0 h-full w-full transform transition-transform duration-1000 ease-in-out ${
         isModal ? 'translate-x-0' : 'translate-x-full'
       }`}>  
-        {isModal && <Modal itemId={ItemNumber} setModal={setModal} />}
+        {isModal && <Modal itemId={ItemNumber} setModal={setModal}  isModal={isModal}/>}
       </div>
 </div>
 )

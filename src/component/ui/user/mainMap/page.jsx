@@ -3,7 +3,7 @@ import UserComponent from '../mainKey/page'
 import MainMake from '../../mainMake/page'
 import Insertbtn from '../../button/insertbtn.jsx'
 
-export default function MainMap({MapList, userUUID}) {
+const MainMap = React.memo(function MainMap({ MapList, userUUID }) {
  
  
     return (
@@ -26,4 +26,5 @@ export default function MainMap({MapList, userUUID}) {
         />
       ))}</div>
   )
-}
+})
+export default MainMap;

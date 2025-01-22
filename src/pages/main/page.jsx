@@ -3,7 +3,11 @@ import supabase from '../../api/supabase/supabaseApi.js'
 import { useEffect, useState } from 'react'
 import MainMap from '../../component/ui/user/mainMap/page.jsx'
 import useSession from '../../api/auth/session.js'
+import FirstModal from '../../component/ui/firstModal/page.jsx'
+import { useModalStore } from '../../zustand/positoinStore.js'
 export default function Main() {
+  const historyNumber = useModalStore((state) => state.historyNumber)
+  
   const [MapList, setMapList] = useState([])
   const {userUUID} = useSession()  // 
 
@@ -49,9 +53,12 @@ useEffect(() => {
 
 return (
   <div className='w-screen relative h-screen overflow-y-hidden overflow-x-hidden overflow-hidden'>
-    
+    {historyNumber < 4 &&(
+    <FirstModal/>
+  )}
+
     <MainMap MapList={MapList} userUUID={userUUID} />
-    
+  
  
   </div>
 )
