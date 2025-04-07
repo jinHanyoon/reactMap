@@ -148,7 +148,8 @@ function Scene({ objectList, setItemNumber,setModal }) {
             key={item.id}
             ref={el => meshRefs.current[index] = el}
             position={[xPos * screenScale, yPos * screenScale, 
-              item.id === 94 ? 10 : 0
+              // 소개 행성 모양
+              item.id === 94 ? 5 : 0
 
             ]}
             scale={screenScale}
