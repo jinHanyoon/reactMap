@@ -37,7 +37,7 @@ export default function Modal({itemId,setModal}) {
             <div className='relative text-white rounded-lg shadow-2xl p-6 md:p-10 max-w-3xl w-full h-full flex flex-col justify-between overflow-hidden mx-4'
                 onClick={(e) => e.stopPropagation()}>
                 {DetailData ? ( 
-                    <div className='h-full text-center pt-24 md:pt-12 '>
+                    <div className='h-full text-center pt-4 md:p-12  '>
                         <h2 className={`text-4xl md:text-5xl font-bold mb-16 md:mb-32 font-space-mono transform transition-all duration-1000 ease delay-100 ${
                             startAnimation ? 'translate-x-0 opacity-100' : 'translate-x-7 opacity-0'
                         }`}>
@@ -47,10 +47,10 @@ export default function Modal({itemId,setModal}) {
                             ${startAnimation ? 'translate-x-0 opacity-100' : 'translate-x-7 opacity-0'}`}>
                             {DetailData.makeBody}
                         </p>
-                        <div className='flex flex-col justify-center align-middle w-3/4 mx-auto '>
-                        <div className='w-3/4 mx-auto text-center '>
-                            <span   className={`mr-2 font-bold font-space-mono inline-block transform transition-all duration-1000 ease delay-300
-                                ${startAnimation ? 'translate-x-0 opacity-100' : 'translate-x-7 opacity-0'}`}>Site Link</span>
+                        <div className='flex flex-col justify-center align-middle w-full mx-auto '>
+                        <div className='w-full mx-auto text-center '>
+                            <p   className={`mr-2 font-bold font-space-mono inline-block transform transition-all duration-1000 ease delay-300
+                                ${startAnimation ? 'translate-x-0 opacity-100' : 'translate-x-7 opacity-0'}`}>Site Link</p>
                         <a 
                             href={DetailData.mapLink} 
                             target="_blank" 
@@ -88,7 +88,7 @@ export default function Modal({itemId,setModal}) {
                 )}
                 <button 
                     onClick={() => setModal(false)} 
-                    className='mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-xl'
+                    className='mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-lg transition duration-300 transform hover:scale-105 hover:shadow-xl md:pb-7'
                 >
                     닫기
                 </button>
