@@ -48,9 +48,10 @@ export default function Modal({itemId,setModal}) {
                             {DetailData.makeBody}
                         </p>
                         <div className='flex flex-col justify-center align-middle w-full mx-auto '>
-                        <div className='w-full mx-auto text-center '>
+                        <div className='w-3/4 mx-auto text-center md:w-full '>
                             <p   className={`mr-2 font-bold font-space-mono inline-block transform transition-all duration-1000 ease delay-300
                                 ${startAnimation ? 'translate-x-0 opacity-100' : 'translate-x-7 opacity-0'}`}>Site Link</p>
+                       
                         <a 
                             href={DetailData.mapLink} 
                             target="_blank" 
